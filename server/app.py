@@ -1,6 +1,7 @@
 from flask import Flask, request, make_response, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
+from flask_restful import Api, Resource
 
 from models import db, Scientist, Planet, Mission
 
@@ -11,15 +12,9 @@ app.json.compact = False
 
 CORS(app)
 migrate = Migrate(app, db)
+api = Api(app)
 
 db.init_app(app)
-
-
-@app.route('/')
-def index():
-    response = make_response(
-        {"message": "Hello Scientists!"}
-    )
 
 
 if __name__ == '__main__':
